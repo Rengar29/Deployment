@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCIT Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <h2><i class="fas fa-graduation-cap"></i> CCIT</h2>
+            </div>
+            <button class="toggle-btn" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="menu-item active">
+                <a href="#" onclick="showSection('home'); return false;">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" onclick="showSection('upload'); return false;">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload Files</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" onclick="showSection('files'); return false;">
+                    <i class="fas fa-folder"></i>
+                    <span>Files</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" onclick="showSection('profile'); return false;">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li class="menu-item logout">
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <h1 id="pageTitle">CCIT Dashboard</h1>
+            </div>
+            <div class="top-bar-right">
+                <!-- Theme Toggle Button -->
+                <div class="theme-toggle">
+                    <button class="theme-btn" id="themeToggle" title="Switch to dark mode">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </div>
+                <div class="user-info">
+                    <span id="welcomeMessage">Welcome, User!</span>
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content-wrapper">
+            <!-- Home Section -->
+            <section id="home" class="content-section active">
+                <div class="section-header">
+                    <h2>Welcome to CCIT Dashboard</h2>
+                    <p>Manage your files and profile efficiently</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalFiles">0</h3>
+                            <p>Total Files</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalStorage">0 MB</h3>
+                            <p>Storage Used</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="userRole">User</h3>
+                            <p>Your Role</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Files -->
+                <div class="recent-files">
+                    <div class="section-title">
+                        <h3>Recent Files</h3>
+                        <a href="#" onclick="showSection('files'); return false;" class="view-all">View All</a>
+                    </div>
+                    <div class="files-list" id="recentFilesList">
+                        <div class="empty-state">
+                            <i class="fas fa-folder-open"></i>
+                            <p>No recent files uploaded yet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <div class="section-title">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="actions-grid">
+                        <div class="action-card" onclick="showSection('upload')">
+                            <div class="action-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <h4>Upload File</h4>
+                            <p>Upload new PDF files</p>
+                        </div>
+                        <div class="action-card" onclick="showSection('profile')">
+                            <div class="action-icon">
+                                <i class="fas fa-user-edit"></i>
+                            </div>
+                            <h4>Edit Profile</h4>
+                            <p>Update your information</p>
+                        </div>
+                        <div class="action-card" onclick="showSection('files')">
+                            <div class="action-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4>Browse Files</h4>
+                            <p>View all uploaded files</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section id="upload" class="content-section">
+                <div class="section-header">
+                    <h2>Upload File</h2>
+                    <p>Upload PDF files to the system</p>
+                </div>
+
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drag & Drop your files here</h3>
+                    <p>or</p>
+                    <input type="file" id="fileUpload" accept=".pdf" hidden>
+                    <button class="btn-primary" onclick="document.getElementById('fileUpload').click()">
+                        Browse Files
+                    </button>
+                    <p class="upload-note">Maximum file size: 10MB • Only PDF files allowed</p>
+                </div>
+
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">Uploading...</p>
+                </div>
+            </section>
+
+            <!-- Files Section -->
+            <section id="files" class="content-section">
+                <div class="section-header">
+                    <h2>All Uploaded Files</h2>
+                    <p>Manage your uploaded PDF files</p>
+                </div>
+
+                <div class="files-container">
+                    <div class="files-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="fileSearch" placeholder="Search files...">
+                        </div>
+                        <button class="btn-primary" onclick="showSection('upload')">
+                            <i class="fas fa-plus"></i> Upload New
+                        </button>
+                    </div>
+
+                    <div class="files-table-container">
+                        <table class="files-table">
+                            <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>Size</th>
+                                <th>Upload Date</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody id="filesTableBody">
+                            <tr>
+                                <td colspan="4" class="no-files">No files uploaded yet</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <div class="section-header">
+                    <h2>Profile Settings</h2>
+                    <p>Manage your account information</p>
+                </div>
+
+                <div class="profile-container">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="profile-info">
+                                <h3 id="profileName">John Doe</h3>
+                                <p id="profileRole">Administrator</p>
+                            </div>
+                        </div>
+
+                        <form id="profileForm" class="profile-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="roleDisplay">Role</label>
+                                <input type="text" id="roleDisplay" class="form-control" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Change Password</label>
+                                <input type="password" id="password" class="form-control" placeholder="Enter new password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm new password">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Save Changes</button>
+                                <button type="button" class="btn-secondary" onclick="resetProfileForm()">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="Dashboard.js"></script>
+</body>
+</html>

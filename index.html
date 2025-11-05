@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRMSU CCIT Admin Portal</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+<!-- Login Page -->
+<div class="container active" id="loginPage">
+    <div class="card">
+        <div class="header">
+            <h1>CCIT</h1>
+            <p>Admin Login</p>
+        </div>
+
+        <form id="loginForm" class="form">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+
+            <div class="input-group">
+                <select id="role" required>
+                    <option value="">Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="instructor">Instructor</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+
+        <div class="divider">
+            <span>or continue with</span>
+        </div>
+
+        <div class="social-buttons">
+            <button class="btn-social google" id="googleLogin">
+                Google
+            </button>
+
+            <button class="btn-social facebook" id="facebookLogin">
+                Facebook
+            </button>
+        </div>
+
+        <div class="footer-links">
+            <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+            <p><a href="#" class="forgot-link">Forgot password?</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Signup Page -->
+<div class="container" id="signupPage">
+    <div class="card">
+        <div class="header">
+            <h1>CCIT</h1>
+            <p>Create Account</p>
+        </div>
+
+        <form id="signupForm" class="form">
+            <div class="input-group">
+                <select id="signupRole" required>
+                    <option value="">Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="instructor">Instructor</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="fullName" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="signupUsername" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="signupPassword" placeholder="Password" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            </div>
+
+            <button type="submit" class="btn-primary">Sign Up</button>
+        </form>
+
+        <div class="divider">
+            <span>or continue with</span>
+        </div>
+
+        <div class="social-buttons">
+            <button class="btn-social google" id="googleSignup">
+                Google
+            </button>
+
+            <button class="btn-social facebook" id="facebookSignup">
+                Facebook
+            </button>
+        </div>
+
+        <div class="footer-links">
+            <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Load Firebase config first -->
+<script src="firebase-config.js"></script>
+<!-- Then your login.js -->
+<script src="login.js"></script>
+</body>
+</html>
